@@ -1,0 +1,56 @@
+.firstlayout{
+    width: 50%;
+    height: auto;
+   
+}
+.centerr{
+    display: flex;
+    gap: 4%;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+}
+.wrap{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.boxed{
+    width: auto;
+    margin-top: 4%;
+}
+.green{
+    background-color: green;
+}
+.white{
+    background-color: white;
+}
+.orange{
+    background-color: orange;
+}
+.fixed{
+  width: 100vh;
+  height: 50;
+}
+li{
+    list-style: none;
+    font-size: large;
+}
+.buttons{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: larger;
+}
+.leftbtn{
+    text-align: left;
+    width: 50%;
+}
+.rightbtn{
+    text-align: right;
+    width: 50%;
+}
+button{
+    font-size: large;
+}

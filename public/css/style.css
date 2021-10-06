@@ -1,0 +1,84 @@
+body{
+    width: 100%;
+    margin: auto;
+    height: auto;
+    
+}
+.devide{
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+}
+.containerone{
+    width: 50%;
+    min-height: 640px;
+    background-color: #7f39fb;
+}
+.containertwo{
+    width: 50%;
+    min-height: 640px;
+    background-color: white;
+}
+.box{
+    padding: 2%;
+    width: 25%;
+    background-color: white;
+    margin: auto;
+    margin-top: 45%;
+    font-size: larger;
+    font-weight: bolder;
+    box-shadow: #bb96fc 5px 4px 5px;
+}
+.boxtwo{
+    padding: 2%;
+    width: 28%;
+    background-color: #bb96fc;
+    margin: auto;
+    margin-top: 45%;
+    font-size: larger;
+    font-weight: bolder;
+    box-shadow: #bb96fc 5px 4px 5px;
+}
+a{
+    text-decoration: none;
+}
+.container{
+    width: 100%;
+    height: auto;
+}
+.form{
+    width: 50%;
+    margin: auto;
+    margin-top: 10%;
+    display: block;
+}
+label{
+    font-size: larger;
+}
+.input{
+    width: 50%;
+}
+.btn{
+    margin-top: 5%;
+    margin-right: 40%;
+    text-align: right;
+}
+.sub{
+    padding: 1%;
+    font-size: larger;
+}
+.boxlayout{
+    display: flex;
+    gap: 2%;
+    width: 60%;
+    margin: auto;
+    margin-top: 10%;
+}
+.h1q{
+    text-align: center;
+}
+.subb{
+    width: 80%;
+    text-align: right;
+    margin: auto;
+}

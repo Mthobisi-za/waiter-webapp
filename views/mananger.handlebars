@@ -1,0 +1,40 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+        <div class="h1q" style="font-size:30px;margin-top: 2%;" >Dashboard</div>
+      <div class="wrap">  
+          <div class="firstlayout">
+            <div class="centerr">
+                <form class="form" style="display: flex; flex-wrap: wrap; gap: 5%;">
+                {{#each week}}
+                <div class="{{this.class}} boxed">
+                <h2 id="{{this.number}}" >{{this.day}}</h2>
+                    <input type="hidden" name="data" value="{{this.number}},{{this.day}}">
+                </div>
+                {{/each}}
+                </form> 
+            </div> <br> <br>
+            <div class="die" style="text-align: center;">
+                <h2 class="h23" style="display: none;">Names of Waiters available</h2>
+                <ul class="ul"></ul>
+            </div>
+        </div>
+        <div class="secondlayout">
+            <div class="fixed">
+                <canvas id="myCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+    <form id="dynamic">
+        <input type="hidden" name="hide" value="{{dynamic}}">
+    </form>
+</div>
+<div class="buttons">
+    <div class="leftbtn">
+       <a href="/home"><button>HOME</button></a>
+    </div>
+    <div class="rightbtn">
+        <a href="/reset"><button>RESET</button></a>
+    </div>
+</div>
+<script src="/js/getData.js" defer></script>
+<link rel="stylesheet" href="/css/mananger.css">

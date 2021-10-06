@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="h1q">Pick the day you are available on {{name}}</h1>
+    <form action="/submit" method="post">
+    <div class="boxlayout">
+      {{#each week}}
+        {{#if this.condition}}
+            <div>
+                <input type="checkbox" name="day" value="{{this.day}}" id="{{this.day}}" {{this.checked}}>
+                <label for="{{this.day}}"> {{this.day}}</label>
+            </div> 
+        {{else}}
+              <div>
+                <input type="checkbox" name="day" value="{{this}}" id="{{this}}" >
+                <label for="{{this}}">{{this}} </label>
+            </div> 
+        {{/if}}
+          
+        {{/each}}
+    </div>
+    <div class="subb">
+        <button type="submit" class="sub">Submit</button> 
+         <a href="/"><button  class="sub">Home</button></a>
+    </div>
+    </form>
+</div>
