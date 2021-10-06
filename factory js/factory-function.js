@@ -1,12 +1,12 @@
 const { json } = require("body-parser");
 const { Pool } = require("pg");
-var pool;
 var connectionstr = process.env.DATABASE_URL;
+var pool;
 if (connectionstr) {
   pool = new Pool({
-    connectionstr: connectionstr,
+    connectionString: connectionstr,
     ssl: { rejectUnauthorized: false },
-  });
+  }); 
 } else {
   pool = new Pool({
     user: "postgres",
@@ -16,7 +16,7 @@ if (connectionstr) {
     database: "users",
     ssl: false,
   });
-}
+} 
 const dbLogic = require("./db");
 module.exports = function factory() {
   const useDbLogic = dbLogic(pool);
