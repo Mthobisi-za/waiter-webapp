@@ -81,7 +81,7 @@ module.exports = function factory() {
                 "day": key,
                 "number": obj[key]
             })
-        } else if(obj[key] = 2){
+        } else if(obj[key] === 2){
             returnedData.push({
                 "class": "orange",
                 "day": key,
