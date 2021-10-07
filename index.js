@@ -15,12 +15,12 @@ app.engine(
 app.set("view engine", "handlebars");
 app.use(
   session({
-    secret: "kat",
-    resave: "yes",
-    cookie: "",
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
   })
 );
-app.use(flash);
+app.use(flash());
 //-----config all the modules
 //------own modules
 const routes = require("./routes");
@@ -29,8 +29,10 @@ const useRoutes = routes();
 app.get("/", useRoutes.home);
 app.get("/user/:type", useRoutes.type);
 app.post("/login", useRoutes.logIn);
-app.post("/submit", useRoutes.submit)
+app.post("/submit", useRoutes.submit);
+app.post("/loginadmin", useRoutes.admin);
 app.get("/reset", useRoutes.reset);
+app.get("/admin", useRoutes.admintemplate)
 //--mananger logic
 
 const PORT = process.env.PORT || 5000;

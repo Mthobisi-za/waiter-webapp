@@ -12,7 +12,9 @@ module.exports = function makeChanges(){
         var dynamic = await useFactory.getNames()
         res.render("mananger", {week: data, dynamic})
         } else if(type == "waitres"){
-            res.render("waitres");
+            var err = useFactory.getError();
+            req.flash("error", err);
+            res.render("waitres",{err});
         } else{
             res.redirect("/")
         }
@@ -22,9 +24,12 @@ module.exports = function makeChanges(){
         req.session.name = name;
         var data = await  useFactory.getDataForWaiter(name);
         var err = useFactory.getError();
-        console.log(err.length)
-        req.flash("error", error)
-        res.render("daypicker", {week : data});
+        console.log(err)
+        if(err.length > 1){
+            res.redirect("/user/waitres");
+        } else{
+           res.render("daypicker", {week : data}); 
+        }
     }
     async function submit(req,res){
         var data = req.body;
@@ -36,11 +41,27 @@ module.exports = function makeChanges(){
         await useFactory.reset();
         res.redirect("/user/mananger");
     }
+    function admin(req,res){
+        var name = req.body.name;
+        useFactory.admin(name);
+        var err = useFactory.getError();
+        if(err.length > 1){
+            res.redirect("/admin");
+        } else{
+            res.redirect("/user/mananger");
+        }
+    }
+    function admintemplate(req,res){
+        var err = useFactory.getError();
+        res.render("loginadmin", {err});
+    }
     return {
         home,
         type,
         logIn,
         submit,
-        reset
+        reset,
+        admin,
+        admintemplate
     }
 }

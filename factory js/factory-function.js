@@ -6,7 +6,7 @@ if (connectionstr) {
   pool = new Pool({
     connectionString: connectionstr,
     ssl: { rejectUnauthorized: false },
-  }); 
+  });
 } else {
   pool = new Pool({
     user: "postgres",
@@ -16,10 +16,10 @@ if (connectionstr) {
     database: "users",
     ssl: false,
   });
-} 
+}
 const dbLogic = require("./db");
 module.exports = function factory() {
-  var error = ""
+  var error = "";
   const useDbLogic = dbLogic(pool);
   async function setData(data, name) {
     var actual = name.toUpperCase();
@@ -30,39 +30,39 @@ module.exports = function factory() {
     return await week;
   }
   async function getDataForWaiter(name) {
-    var checker = /d/g;
-    if(name && checker.test(name) == false){
-      error = " "
+    var checker = /^[A-Za-z]+$/;
+    if (name && name.match(checker)) {
+      error = " ";
       var arrg = [];
-    var week = await useDbLogic.getWeek();
-    await week.forEach((element) => {
-      arrg.push(element.the_day);
-    });
-    var actual = name.toUpperCase();
-    var data = await useDbLogic.getDataForWaiter(actual);
-    if (data.length > 0) {
-      var days = await data[0].days.split(",");
-      days.forEach((ele) => {
-        var check = arrg.indexOf(ele);
-        if (check != -1) {
-          arrg.splice(check, 1);
-          arrg.push({ day: ele, checked: "checked", condition: true });
-        } else {
-        }
+      var week = await useDbLogic.getWeek();
+      await week.forEach((element) => {
+        arrg.push(element.the_day);
       });
+      var actual = name.toUpperCase();
+      var data = await useDbLogic.getDataForWaiter(actual);
+      if (data.length > 0) {
+        var days = await data[0].days.split(",");
+        days.forEach((ele) => {
+          var check = arrg.indexOf(ele);
+          if (check != -1) {
+            arrg.splice(check, 1);
+            arrg.push({ day: ele, checked: "checked", condition: true });
+          } else {
+          }
+        });
 
-      return arrg;
+        return arrg;
+      } else {
+        return arrg;
+      }
     } else {
-      return arrg;
-    }
-    } else{
-      error = "Please insert correct data!"
+      error = "Please insert correct data with no numbers or space!";
     }
   }
   async function getWeekAndPickedDays() {
     var obj = {};
     var days = [];
-    var returnedData =[]
+    var returnedData = [];
     var week = await useDbLogic.getWeek();
     await week.forEach((ele) => {
       obj[ele.the_day] = 0;
@@ -74,50 +74,59 @@ module.exports = function factory() {
         days.push(day);
       });
     });
-    days.forEach(element =>{
-        for(let key in obj){
-            if(key == element){
-                obj[key] += 1
-            }
+    days.forEach((element) => {
+      for (let key in obj) {
+        if (key == element) {
+          obj[key] += 1;
         }
-    })
-    for(let key in obj){
-        if(obj[key] > 2){
-            returnedData.push({
-                "class": "green",
-                "day": key,
-                "number": obj[key]
-            })
-        } else if(obj[key] === 2){
-            returnedData.push({
-                "class": "orange",
-                "day": key,
-                "number": obj[key]
-            })
-        } else{
-            returnedData.push({
-                "class": "white",
-                "day": key,
-                "number": obj[key]
-            })
-        }
+      }
+    });
+    for (let key in obj) {
+      if (obj[key] > 2) {
+        returnedData.push({
+          class: "green",
+          day: key,
+          number: obj[key],
+        });
+      } else if (obj[key] === 2) {
+        returnedData.push({
+          class: "orange",
+          day: key,
+          number: obj[key],
+        });
+      } else {
+        returnedData.push({
+          class: "white",
+          day: key,
+          number: obj[key],
+        });
+      }
     }
-    return returnedData
+    return returnedData;
   }
-  async function getNames(){
-    var returned =[]
+  async function getNames() {
+    var returned = [];
     var full = await useDbLogic.filterOut();
-    await full.forEach(ele =>{
+    await full.forEach((ele) => {
       var changed = JSON.stringify(ele);
       returned.push(changed);
-    })
-    return (JSON.stringify(returned));
+    });
+    return JSON.stringify(returned);
   }
-  async function reset(){
-    await useDbLogic.reset()
+  async function reset() {
+    await useDbLogic.reset();
   }
-  function getError(){
+  function getError() {
     return error;
+  }
+  function admin(name){
+    var checker = /^[A-Za-z]+$/;
+    var condition = name.match(checker);
+    if(condition && name){
+      error = " "
+    } else{
+      error = "Please insert correct data with no numbers or space!";
+    }
   }
   return {
     setData,
@@ -126,6 +135,7 @@ module.exports = function factory() {
     getWeekAndPickedDays,
     getNames,
     reset,
-    getError
+    getError,
+    admin
   };
 };
