@@ -20,6 +20,7 @@ app.use(
     cookie: "",
   })
 );
+app.use(flash);
 //-----config all the modules
 //------own modules
 const routes = require("./routes");
@@ -29,7 +30,7 @@ app.get("/", useRoutes.home);
 app.get("/user/:type", useRoutes.type);
 app.post("/login", useRoutes.logIn);
 app.post("/submit", useRoutes.submit)
-
+app.get("/reset", useRoutes.reset);
 //--mananger logic
 
 const PORT = process.env.PORT || 5000;

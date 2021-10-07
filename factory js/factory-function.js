@@ -19,6 +19,7 @@ if (connectionstr) {
 } 
 const dbLogic = require("./db");
 module.exports = function factory() {
+  var error = ""
   const useDbLogic = dbLogic(pool);
   async function setData(data, name) {
     var actual = name.toUpperCase();
@@ -29,7 +30,10 @@ module.exports = function factory() {
     return await week;
   }
   async function getDataForWaiter(name) {
-    var arrg = [];
+    var checker = /d/g;
+    if(name && checker.test(name) == false){
+      error = " "
+      var arrg = [];
     var week = await useDbLogic.getWeek();
     await week.forEach((element) => {
       arrg.push(element.the_day);
@@ -50,6 +54,9 @@ module.exports = function factory() {
       return arrg;
     } else {
       return arrg;
+    }
+    } else{
+      error = "Please insert correct data!"
     }
   }
   async function getWeekAndPickedDays() {
@@ -106,11 +113,19 @@ module.exports = function factory() {
     })
     return (JSON.stringify(returned));
   }
+  async function reset(){
+    await useDbLogic.reset()
+  }
+  function getError(){
+    return error;
+  }
   return {
     setData,
     getWeek,
     getDataForWaiter,
     getWeekAndPickedDays,
-    getNames
+    getNames,
+    reset,
+    getError
   };
 };

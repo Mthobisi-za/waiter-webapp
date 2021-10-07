@@ -25,11 +25,15 @@ module.exports = function makeChanges(pool){
         var data = await pool.query("select days from waiters where waiter_name = $1", [name]);
         return await data.rows
     }
+    async function reset(){
+        await pool.query("delete from waiters");
+    }
     return{
         getWeek,
         setDataWaiter,
         checkBeforeData,
         filterOut,
-        getDataForWaiter
+        getDataForWaiter,
+        reset
     }
 }

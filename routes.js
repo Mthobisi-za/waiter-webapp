@@ -15,12 +15,15 @@ module.exports = function makeChanges(){
             res.render("waitres");
         } else{
             res.redirect("/")
-        } 
+        }
     }
     async function logIn(req,res){
         var name = req.body.name;
         req.session.name = name;
         var data = await  useFactory.getDataForWaiter(name);
+        var err = useFactory.getError();
+        console.log(err.length)
+        req.flash("error", error)
         res.render("daypicker", {week : data});
     }
     async function submit(req,res){
@@ -29,10 +32,15 @@ module.exports = function makeChanges(){
         await useFactory.setData(data,name);
         res.redirect("/")
     }
+    async function reset(req,res){
+        await useFactory.reset();
+        res.redirect("/user/mananger");
+    }
     return {
         home,
         type,
         logIn,
-        submit
+        submit,
+        reset
     }
 }
