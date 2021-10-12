@@ -55,6 +55,9 @@ module.exports = function makeChanges(){
         var err = useFactory.getError();
         res.render("loginadmin", {err});
     }
+    function goToHome(req,res){
+        res.redirect("/")
+    }
     return {
         home,
         type,
@@ -62,6 +65,7 @@ module.exports = function makeChanges(){
         submit,
         reset,
         admin,
-        admintemplate
+        admintemplate,
+        goToHome
     }
 }

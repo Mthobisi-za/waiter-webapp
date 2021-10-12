@@ -32,7 +32,8 @@ app.post("/login", useRoutes.logIn);
 app.post("/submit", useRoutes.submit);
 app.post("/loginadmin", useRoutes.admin);
 app.get("/reset", useRoutes.reset);
-app.get("/admin", useRoutes.admintemplate)
+app.get("/admin", useRoutes.admintemplate);
+app.get("/home", useRoutes.goToHome)
 //--mananger logic
 
 const PORT = process.env.PORT || 5000;
