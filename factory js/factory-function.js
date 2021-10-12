@@ -127,6 +127,9 @@ module.exports = function factory() {
     } else{
       error = "Please insert correct data with no numbers or space!";
     }
+  };
+  async function disconnect(){
+    await useDbLogic.disconnect();
   }
   return {
     setData,
@@ -136,6 +139,7 @@ module.exports = function factory() {
     getNames,
     reset,
     getError,
-    admin
+    admin,
+    disconnect
   };
 };

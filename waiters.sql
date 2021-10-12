@@ -4,7 +4,8 @@ CREATE TABLE week(
 
 CREATE TABLE waiters(
   id serial primary key not null,
-    waiter_name text not null);
+    waiter_name text not null,
+    days text not null);
 
 
 INSERT INTO week (the_day) VALUES ('Sunday');

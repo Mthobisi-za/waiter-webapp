@@ -18,7 +18,6 @@ module.exports = function makeChanges(pool){
     }
     async function filterOut(){
         var data = await pool.query("select * from waiters");
-        console.log(data.rows)
         return await data.rows
     }
     async function getDataForWaiter(name){
@@ -28,12 +27,16 @@ module.exports = function makeChanges(pool){
     async function reset(){
         await pool.query("delete from waiters");
     }
+    async function disconnect(){
+        await pool.end();
+    }
     return{
         getWeek,
         setDataWaiter,
         checkBeforeData,
         filterOut,
         getDataForWaiter,
-        reset
+        reset,
+        disconnect
     }
 }
