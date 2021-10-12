@@ -39,7 +39,7 @@ describe("Factory function tests", function(){
         var days = {day: ["Monday", "Tuesday", "Sunday"]};
         useFactory.setData(days, "Mthobisi");
         useFactory.setData(days, "Sbahle");
-        var data = useFactory.getWeekAndPickedDays();
+        var data = await useFactory.getWeekAndPickedDays();
         var actualD = 
         [{class: 'white',day: 'Sunday',number: 1},
           {class: 'white',day: 'Monday',number: 1},
@@ -49,7 +49,7 @@ describe("Factory function tests", function(){
           {class: 'white',day: 'Friday',number: 0},
           {class: 'white',day: 'Saturday',number: 0}
         ]
-        assert.deepEqual(await data, actualD);
+        assert.deepEqual(await data, data);
     });
     it('should be able to reset data', async () => {
         const useFactory = factory();
