@@ -1,14 +1,37 @@
 
 <div class="container">
+    
     <div class="form">
         <h1 class="h1q">Sign In</h1>
-        <br> <form action="/login" method="post">
-        <span style="color: red;">{{err}}</span> <br> <br>
+        <br>
+         <form action="/login" method="post">
+        <span style="color: red; margin-left: 5%;">{{err}}</span> <br> <br>
         <label for="name">Name : </label>
         <input name="name" class="input" type="text" placeholder="Jack">
         <br>
         <div class="btn">
             <input type="submit" value="LogIn" class="sub">
-        </div></form>
-    </div>
+        </div></form> <br>
+    </div> <br> 
 </div>
+<style>
+    .form{
+        border-top: 10px dotted white;
+        border-bottom: 10px dotted #7f39fb;
+        border-right: 10px dotted #7f39fb;
+        border-left: 10px dotted white;
+        z-index: 1;
+        background-color: linear-gradient(to left, #7f39fb 50%, white 50%);
+    }
+    label{
+        margin-left: 5%;
+    }
+</style>
+<script>
+    var canvas = document.querySelector("#myCanvas");
+    canvas.attr({
+        type: "button",
+        name: "btn1",
+
+    });
+</script>

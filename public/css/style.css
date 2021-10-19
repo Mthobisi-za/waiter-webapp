@@ -2,21 +2,22 @@ body{
     width: 100%;
     margin: auto;
     height: auto;
-    
+    background-color: #e9ecef;
 }
 .devide{
-    width: 100%;
-    min-height: 500px;
+    width: 80%;
+    min-height: 300px;
     display: flex;
+    margin: auto;
 }
 .containerone{
     width: 50%;
-    min-height: 640px;
+    min-height: 400px;
     background-color: #7f39fb;
 }
 .containertwo{
     width: 50%;
-    min-height: 640px;
+    min-height: 400px;
     background-color: white;
 }
 .box{
@@ -24,7 +25,7 @@ body{
     width: 25%;
     background-color: white;
     margin: auto;
-    margin-top: 45%;
+    margin-top: 30%;
     font-size: larger;
     font-weight: bolder;
     box-shadow: #bb96fc 5px 4px 5px;
@@ -34,7 +35,7 @@ body{
     width: 28%;
     background-color: #bb96fc;
     margin: auto;
-    margin-top: 45%;
+    margin-top: 30%;
     font-size: larger;
     font-weight: bolder;
     box-shadow: #bb96fc 5px 4px 5px;
@@ -51,6 +52,7 @@ a{
     margin: auto;
     margin-top: 10%;
     display: block;
+    
 }
 label{
     font-size: larger;
@@ -81,4 +83,26 @@ label{
     width: 80%;
     text-align: right;
     margin: auto;
+}
+.mother{
+    width: 100%;
+    height: auto;
+    display: block;
+    text-align: center;
+}
+.span{
+    width: 50%;
+    margin: auto;
+    margin-top: 5%;
+    min-height: 50px;
+    border-bottom: white 20px;
+    border-right: #7f39fb 20px;
+    border-left:  white 20px;
+    border-top: #7f39fb 20px;
+    border-style: dotted;
+}
+span{
+    margin-top: 10%;
+    color: green;
+    
 }

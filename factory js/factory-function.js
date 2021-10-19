@@ -20,8 +20,14 @@ if (connectionstr) {
 const dbLogic = require("./db");
 module.exports = function factory() {
   var error = "";
+  var sMsg = " ";
   const useDbLogic = dbLogic(pool);
   async function setData(data, name) {
+    if(data !== undefined && name !== undefined){
+      sMsg = "You have successfully added your shift's " + name;
+    }else{
+      error = " "
+    }
     var actual = name.toUpperCase();
     await useDbLogic.setDataWaiter(data, actual);
   }
@@ -114,10 +120,19 @@ module.exports = function factory() {
     return JSON.stringify(returned);
   }
   async function reset() {
+    sMsg = "Successfully cleared the Database!"
     await useDbLogic.reset();
   }
   function getError() {
-    return error;
+    function sMsgs(){
+      var msg = sMsg;
+      sMsg = " "
+      return msg;
+    }
+    function err(){
+       return error;
+    }
+   return {sMsgs, err}
   }
   function admin(name){
     var checker = /^[A-Za-z]+$/;
@@ -131,6 +146,9 @@ module.exports = function factory() {
   async function disconnect(){
     await useDbLogic.disconnect();
   }
+  function resetErr(){
+    error = " ";
+  }
   return {
     setData,
     getWeek,
@@ -140,6 +158,7 @@ module.exports = function factory() {
     reset,
     getError,
     admin,
-    disconnect
+    disconnect,
+    resetErr
   };
 };

@@ -1,7 +1,8 @@
 .firstlayout{
-    width: 50%;
+    width: 40%;
     height: auto;
-   
+    background-color: #7f39fb;
+    margin: auto;
 }
 .centerr{
     display: flex;
@@ -14,6 +15,7 @@
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
+    gap: 5%;
 }
 .boxed{
     width: auto;
@@ -53,4 +55,15 @@ li{
 }
 button{
     font-size: large;
+}
+.secondlayout{
+    width: 50%;
+    background-color: white;
+}
+.h1q{
+    background-color: #bb96fc;
+    width: 15%;
+    margin: auto;
+    text-align: center;
+    box-shadow: #bb96fc 5px 4px 5px;
 }

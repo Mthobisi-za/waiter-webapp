@@ -1,11 +1,21 @@
-<div class="devide">
+<div class="mother">
+    <div class="span"> <br>
+        <span>{{error}}</span> <br>
+    </div>
+    <br> <br>
+   <div class="devide">
     <div class="containerone">
      <nav class="box"> <a href="/user/waitres">Are you a waiter!</a></nav>
     </div>
     <div class="containertwo">
-        <nav class="boxtwo"> <a href="/admin"> Are you a Mananger!</a></nav>
+        <nav class="boxtwo"> <a href="/admin"> Are you a Manager!</a></nav>
     </div>
 </div>
 <script>
-   
-</script>
+   var span = document.querySelector("span");
+   setTimeout(()=>{
+       span.innerHTML =  " "
+   }, 5000);
+</script> 
+</div>
+
