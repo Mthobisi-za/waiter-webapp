@@ -14,7 +14,10 @@ module.exports = function makeChanges(pool){
         //var waitersNames = await useFactory.getAllData();
         var dynamic = await useFactory.getNames();
         var err = useFactory.getError().sMsgs();
-        res.render("mananger", {week: data, dynamic, err})
+        var weeky = await useFactory.getWeek();
+        var waiters = await useFactory.getAllData();
+        var obj = {waiters: waiters, weeky: weeky};
+        res.render("mananger", {week: data, dynamic, err,obj})
         } else if(type == "waitres"){
             err = useFactory.getError().err();
             if(req.session.name){
@@ -91,6 +94,13 @@ module.exports = function makeChanges(pool){
         res.redirect("/");
     }
 
+    async function setDataForWaiter(req,res){
+        var data = req.body;
+        var name = req.params.name;
+        await useFactory.setData(data,name);
+        res.redirect("/user/mananger");
+    }
+
     return {
         home,
         type,
@@ -99,6 +109,7 @@ module.exports = function makeChanges(pool){
         reset,
         admin,
         admintemplate,
-        goToHome
+        goToHome,
+        setDataForWaiter
     }
 }

@@ -52,7 +52,8 @@ app.post("/submit", useRoutes.submit);
 app.post("/loginadmin", useRoutes.admin);
 app.get("/reset", useRoutes.reset);
 app.get("/admin", useRoutes.admintemplate);
-app.post("/home", useRoutes.goToHome)
+app.post("/home", useRoutes.goToHome);
+app.post("/waiter/:name", useRoutes.setDataForWaiter);
 //--mananger logic
 
 const PORT = process.env.PORT || 5000;

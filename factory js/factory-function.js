@@ -85,9 +85,15 @@ module.exports = function factory(pool) {
           day: key,
           number: obj[key],
         });
-      } else {
+      } else if(obj[key] == 1) {
         returnedData.push({
           class: "white",
+          day: key,
+          number: obj[key],
+        });
+      } else{
+        returnedData.push({
+          class: "transparent",
           day: key,
           number: obj[key],
         });
@@ -146,16 +152,7 @@ module.exports = function factory(pool) {
   }
 
   async function getAllData(){
-    var data =  await useDbLogic.getAllNames();
-    var argD = [];
-    var names = []
-    for (const dataa of data) {
-      var name = dataa.waiter_name;
-      names.push(name);
-      var dataForWaiter = await getDataForWaiter(name);
-      argD.push(dataForWaiter);
-    }
-    var fullData = {names: names, data: argD};
+   var data = await useDbLogic.getAllData();
     return data
   }
   function setError(err){

@@ -41,7 +41,10 @@ module.exports = function makeChanges(pool){
     async function disconnect(){
         await pool.end();
     }
-    
+    async function getAllData(){
+        var data = await pool.query("select * from waiters");
+        return await data.rows;
+    }
     return{
         getWeek,
         setDataWaiter,
@@ -50,6 +53,7 @@ module.exports = function makeChanges(pool){
         getDataForWaiter,
         getAllNames,
         reset,
-        disconnect
+        disconnect,
+        getAllData
     }
 }
