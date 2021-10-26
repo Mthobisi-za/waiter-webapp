@@ -1,0 +1,9 @@
+[
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Saturday',
+  { day: 'Wednesday', checked: 'checked', condition: true },
+  { day: 'Thursday', checked: 'checked', condition: true },
+  { day: 'Friday', checked: 'checked', condition: true }
+]

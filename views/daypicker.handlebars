@@ -1,6 +1,10 @@
 <div class="container">
     <h1 class="h1q">Pick the day you are available on {{name}}</h1>
     <form action="/submit" method="post">
+    
+    <div class="span" style="text-align:center;"> <br>
+        <span class="errremove">{{error}}</span><span class="red" style="color: red;">{{alertErrorr}}</span> <br>
+    </div>
     <div class="boxlayout">
       {{#each week}}
         {{#if this.condition}}
@@ -14,12 +18,24 @@
                 <label for="{{this}}">{{this}} </label>
             </div> 
         {{/if}}
-          
         {{/each}}
     </div>
     <div class="subb">
         <button type="submit" class="sub">Submit</button> 
-         <a href="/home"><button  class="sub">Home</button></a>
+        <button type="submit"  class="sub"> <a style="color: black;" href="/">Home</a></button>
     </div>
     </form>
 </div>
+<script>
+    var span = document.querySelector(".red").textContent;
+    if(span == "Please select two or more working days"){
+        var change = document.querySelector(".errremove");
+        change.innerHTML = " ";
+    }
+    setTimeout(()=>{
+        var span = document.querySelector(".red");
+        var change = document.querySelector(".errremove");
+        change.innerHTML = " ";
+        span.innerHTML = " "
+    }, 5000)
+</script>

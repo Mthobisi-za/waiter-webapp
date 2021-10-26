@@ -1,26 +1,8 @@
-const { json } = require("body-parser");
-const { Pool } = require("pg");
-var connectionstr = process.env.DATABASE_URL;
-var pool;
-if (connectionstr) {
-  pool = new Pool({
-    connectionString: connectionstr,
-    ssl: { rejectUnauthorized: false },
-  });
-} else {
-  pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    port: 5432,
-    password: "mthobisi",
-    database: "users",
-    ssl: false,
-  });
-}
 const dbLogic = require("./db");
-module.exports = function factory() {
+module.exports = function factory(pool) {
   var error = "";
   var sMsg = " ";
+  var dynamicerr = "";
   const useDbLogic = dbLogic(pool);
   async function setData(data, name) {
     if(data !== undefined && name !== undefined){
@@ -31,10 +13,12 @@ module.exports = function factory() {
     var actual = name.toUpperCase();
     await useDbLogic.setDataWaiter(data, actual);
   }
+
   async function getWeek() {
     var week = await useDbLogic.getWeek();
     return await week;
   }
+
   async function getDataForWaiter(name) {
     var checker = /^[A-Za-z]+$/;
     if (name && name.match(checker)) {
@@ -65,6 +49,7 @@ module.exports = function factory() {
       error = "Please insert correct data with no numbers or space!";
     }
   }
+
   async function getWeekAndPickedDays() {
     var obj = {};
     var days = [];
@@ -110,6 +95,7 @@ module.exports = function factory() {
     }
     return returnedData;
   }
+
   async function getNames() {
     var returned = [];
     var full = await useDbLogic.filterOut();
@@ -119,10 +105,12 @@ module.exports = function factory() {
     });
     return JSON.stringify(returned);
   }
+
   async function reset() {
     sMsg = "Successfully cleared the Database!"
     await useDbLogic.reset();
   }
+
   function getError() {
     function sMsgs(){
       var msg = sMsg;
@@ -138,16 +126,46 @@ module.exports = function factory() {
     var checker = /^[A-Za-z]+$/;
     var condition = name.match(checker);
     if(condition && name){
-      error = " "
+      var fullName = name.toLowerCase()
+      if(fullName == "admin"){
+         error = " "
+      }else{
+        error = name + " is not an admin, Please use correct login details"
+      }
     } else{
       error = "Please insert correct data with no numbers or space!";
     }
-  };
+  }
+
   async function disconnect(){
     await useDbLogic.disconnect();
   }
+
   function resetErr(){
     error = " ";
+  }
+
+  async function getAllData(){
+    var data =  await useDbLogic.getAllNames();
+    var argD = [];
+    var names = []
+    for (const dataa of data) {
+      var name = dataa.waiter_name;
+      names.push(name);
+      var dataForWaiter = await getDataForWaiter(name);
+      argD.push(dataForWaiter);
+    }
+    var fullData = {names: names, data: argD};
+    return data
+  }
+  function setError(err){
+    dynamicerr = err;
+  }
+  function getDynamicErr(){
+    return dynamicerr;
+  }
+  function resetDynamic(){
+    sMsg = " "
   }
   return {
     setData,
@@ -159,6 +177,10 @@ module.exports = function factory() {
     getError,
     admin,
     disconnect,
-    resetErr
+    resetErr,
+    getAllData,
+    setError,
+    getDynamicErr,
+    resetDynamic
   };
 };

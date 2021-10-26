@@ -26,9 +26,15 @@
     }]
     };
     const config = {
-    type: 'line',
+    type: 'bar',
     data: data,
-    options: {}
+    options: {
+        scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+    }
     };
   var myChart = new Chart(
     document.getElementById('myCanvas'),
