@@ -101,6 +101,17 @@ module.exports = function makeChanges(pool){
         res.redirect("/user/mananger");
     }
 
+    async function routesLogin(req,res){
+        var name = req.params.name;
+        req.session.name = name;
+        res.redirect("/user/waitres");
+    }
+
+    async function logOut(req,res){
+        req.session.name = null;
+        res.redirect("/");
+    }
+
     return {
         home,
         type,
@@ -110,6 +121,8 @@ module.exports = function makeChanges(pool){
         admin,
         admintemplate,
         goToHome,
-        setDataForWaiter
+        setDataForWaiter,
+        routesLogin,
+        logOut
     }
 }

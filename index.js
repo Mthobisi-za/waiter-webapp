@@ -55,7 +55,11 @@ app.get("/admin", useRoutes.admintemplate);
 app.post("/home", useRoutes.goToHome);
 app.post("/waiter/:name", useRoutes.setDataForWaiter);
 //--mananger logic
+//--- Routes login
+app.get("/waiter/:name", useRoutes.routesLogin);
 
+//--- Log out
+app.get("/logout", useRoutes.logOut);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Server started on " + PORT);
