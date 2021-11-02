@@ -46,7 +46,7 @@
         {{#each obj.waiters}}
         <tr style="font-weight: lighter;">
             <th>{{this.waiter_name}}</th>
-            <th>{{this.days}}</th>
+            <th class="{{this.id}} {{this.waiter_name}}">{{this.days}}</th>
             <th> <button class="edit" id="{{this.id}} {{this.waiter_name}}">Edit details</button> </th>
         </tr>
         {{/each}}
@@ -58,7 +58,7 @@
     <form method="post" class="formdynamic" style="display: none;">
         {{#each obj.weeky}}
         <div>
-            <input type="checkbox" name="day" value="{{this.the_day}}" id="{{this.id}}">
+            <input type="checkbox" name="day" class="input" value="{{this.the_day}}" id="{{this.id}} {{this.the_day}}">
             <label for="{{this.id}}">{{this.the_day}}</label>
         </div>
         {{/each}}
@@ -82,6 +82,8 @@
                 var form = document.querySelector(".formdynamic");
                 form.action = "/waiter/" + arg[1];
                 form.style.display = "flex";
+                clearChecked();
+                makeChanges(arg);
             }
         })
     }
@@ -140,3 +142,4 @@
     }, 5000);
 
 </script>
+<script src="/js/managerdata.js"></script>
