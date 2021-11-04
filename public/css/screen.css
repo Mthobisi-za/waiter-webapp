@@ -1,0 +1,13 @@
+.instructions{
+    width: 30%;
+    height: auto;
+    text-align: left;
+    margin-right: 5%;
+}
+.instructions h4{
+    text-align: center;
+}
+.screen{
+    width: 80%;
+    margin: auto;
+}

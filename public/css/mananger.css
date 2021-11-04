@@ -15,7 +15,7 @@
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
-    gap: 5%;
+    gap: 1%;
 }
 .boxed{
     width: auto;
@@ -57,7 +57,7 @@ button{
     font-size: large;
 }
 .secondlayout{
-    width: 50%;
+    width: 65%;
     background-color: white;
 }
 .h1q{

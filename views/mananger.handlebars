@@ -1,4 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="/css/screen.css">
 
 <div class="h1q" style="font-size:30px;margin-top: 2%;">Dashboard</div>
 <br>
@@ -21,12 +22,26 @@
             <ul class="ul"></ul>
         </div>
     </div>
+    <div class="instructions">
+        <h4>Details</h4>
+        <h5 >Colours</h5>
+        <p>
+            <p>Blue : It means there are no waiters (default)</p>
+            <p>White: It means there is on one waiter available</p>
+            <p>Orange: It means there are two waiters available</p>
+            <p>Green : It means there are 3 or more waiters available</p>
+            <p>Tip! Click on any day to view the name of waiters available on that day.</p>
+        </p>
+    </div>
+</div> <br> <br>
+<div class="screen">
     <div class="secondlayout">
         <div class="fixed">
             <canvas id="myCanvas"></canvas>
         </div>
     </div>
 </div>
+
 <form id="dynamic">
     <input type="hidden" name="hide" value="{{dynamic}}">
 </form>
